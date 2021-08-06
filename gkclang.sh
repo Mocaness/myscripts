@@ -135,10 +135,10 @@ gen_zip() {
 	msg "|| Zipping into a flashable zip ||"
 	cp "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
 	cd AnyKernel3 || exit
-	zip -r9 $ZIPNAME-$DEVICE-"$DRONE_BUILD_NUMBER" ./* -x .git README.md
+	zip -r9 $ZIPNAME-$DEVICE-$DRONE_BRANCH-"$DRONE_BUILD_NUMBER" ./* -x .git README.md
 
 	## Prepare a final zip variable
-	ZIP_FINAL="$ZIPNAME-$DEVICE-$DRONE_BUILD_NUMBER.zip"
+	ZIP_FINAL="$ZIPNAME-$DEVICE-$DRONE_BRANCH-$DRONE_BUILD_NUMBER.zip"
 	tg_post_build "$ZIP_FINAL" "$CHATID" "✅ Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)"
 	cd ..
 	rm -rf AnyKernel3
