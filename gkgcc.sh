@@ -102,7 +102,7 @@ exports() {
 ##---------------------------------------------------------##
 
 tg_post_msg() {
-	curl -s -X POST "$BOT_MSG_URL" -d chat_id="-1001403511595" \
+	curl -s -X POST "$BOT_MSG_URL" -d chat_id="$2" \
 	-d "disable_web_page_preview=true" \
 	-d "parse_mode=html" \
 	-d text="$1"
@@ -150,10 +150,10 @@ gen_zip() {
 	msg "|| Zipping into a flashable zip ||"
 	mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
 	cd AnyKernel3 || exit
-	zip -r9 $ZIPNAME-$DEVICE-"$DRONE_BUILD_NUMBER" ./* -x .git README.md
+	zip -r9 $ZIPNAME-$DEVICE-"$CI_BRANCH"-"$DRONE_BUILD_NUMBER" ./* -x .git README.md
 
 	## Prepare a final zip variable
-	ZIP_FINAL="$ZIPNAME-$DEVICE-$DRONE_BUILD_NUMBER.zip"
+	ZIP_FINAL="$ZIPNAME-$DEVICE-$CI_BRANCH-$DRONE_BUILD_NUMBER.zip"
 	tg_post_build "$ZIP_FINAL" "$CHATID" "✅ Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)"
 	cd ..
 }
