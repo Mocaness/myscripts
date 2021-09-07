@@ -36,7 +36,7 @@ err() {
 KERNEL_DIR=$PWD
 
 # The name of the Kernel, to name the ZIP
-ZIPNAME="SiLonT-TEST"
+ZIPNAME="KalinaNegev"
 
 # The codename of the device
 DEVICE="whyred"
@@ -56,7 +56,7 @@ export KBUILD_BUILD_HOST CI_BRANCH
 ## Export CI Env
 export KBUILD_BUILD_VERSION=$DRONE_BUILD_NUMBER
 export CI_BRANCH=$DRONE_BRANCH
-export CHATID="-1001403511595"
+export CHATID="-1001262484455"
 
 #Check Kernel Version
 KERVER=$(make kernelversion)
@@ -70,20 +70,20 @@ COMMIT_HEAD=$(git log --oneline -1)
  clone() {
 	echo " "
 		msg "|| Cloning GCC ||"
-		git clone --depth=1 https://github.com/silont-project/aarch64-elf-gcc -b arm64/11 gcc64
-		git clone --depth=1 https://github.com/silont-project/arm-eabi-gcc -b arm/11 gcc32
+		git clone --depth=1 https://github.com/Mocaness/aarch64-elf-gcc -b 10.2 gcc64
+		git clone --depth=1 https://github.com/Mocaness/arm-eabi-gcc -b 10.2 gcc32
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
 
 	msg "|| Cloning Anykernel ||"
-	git clone --depth 1 --no-single-branch https://github.com/Reinazhard/AnyKernel3.git -b master
+	git clone --depth 1 --no-single-branch https://github.com/Mocaness/AnyKernel3.git -b main
 }
 
 ##------------------------------------------------------##
 
 exports() {
-	export KBUILD_BUILD_USER="reina"
-	export KBUILD_BUILD_HOST="Laptop-Sangar"
+	export KBUILD_BUILD_USER="Mocarafee"
+	export KBUILD_BUILD_HOST="HaachamaKitchen"
 	export ARCH=arm64
 	export SUBARCH=arm64
 
@@ -102,7 +102,7 @@ exports() {
 ##---------------------------------------------------------##
 
 tg_post_msg() {
-	curl -s -X POST "$BOT_MSG_URL" -d chat_id="-1001403511595" \
+	curl -s -X POST "$BOT_MSG_URL" -d chat_id="$2" \
 	-d "disable_web_page_preview=true" \
 	-d "parse_mode=html" \
 	-d text="$1"
