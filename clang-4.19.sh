@@ -71,7 +71,7 @@ clone() {
 	GCC_DIR=$KERNEL_DIR/gcc
 
 	msg "|| Cloning Anykernel ||"
-	git clone --depth 1 --no-single-branch https://github.com/Reinazhard/AnyKernel3.git -b master
+	git clone --depth 1 --no-single-branch https://github.com/Mocaness/AnyKernel3.git -b main
 }
 
 ##------------------------------------------------------##
