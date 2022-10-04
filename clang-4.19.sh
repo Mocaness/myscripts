@@ -36,7 +36,7 @@ err() {
 KERNEL_DIR=$PWD
 
 # Devices variable
-ZIPNAME="KalinaNegev"
+ZIPNAME="KalinaNegev-4.19"
 DEVICE="whyred"
 DEFCONFIG=vendor/bouquet_defconfig
 FG_DEFCON=vendor/whyred.config
